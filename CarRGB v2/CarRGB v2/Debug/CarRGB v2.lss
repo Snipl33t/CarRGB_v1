@@ -1,0 +1,977 @@
+
+CarRGB v2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000428  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  0000049c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000004a  00800060  00800060  0000049c  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000049c  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000004cc  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000f0  00000000  00000000  00000508  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000163f  00000000  00000000  000005f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000c24  00000000  00000000  00001c37  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000872  00000000  00000000  0000285b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000204  00000000  00000000  000030d0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000070f  00000000  00000000  000032d4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000008eb  00000000  00000000  000039e3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000b0  00000000  00000000  000042ce  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	14 c0       	rjmp	.+40     	; 0x2a <__ctors_end>
+   2:	2d c0       	rjmp	.+90     	; 0x5e <__bad_interrupt>
+   4:	2c c0       	rjmp	.+88     	; 0x5e <__bad_interrupt>
+   6:	2b c0       	rjmp	.+86     	; 0x5e <__bad_interrupt>
+   8:	2a c0       	rjmp	.+84     	; 0x5e <__bad_interrupt>
+   a:	29 c0       	rjmp	.+82     	; 0x5e <__bad_interrupt>
+   c:	28 c0       	rjmp	.+80     	; 0x5e <__bad_interrupt>
+   e:	27 c0       	rjmp	.+78     	; 0x5e <__bad_interrupt>
+  10:	26 c0       	rjmp	.+76     	; 0x5e <__bad_interrupt>
+  12:	25 c0       	rjmp	.+74     	; 0x5e <__bad_interrupt>
+  14:	24 c0       	rjmp	.+72     	; 0x5e <__bad_interrupt>
+  16:	b2 c1       	rjmp	.+868    	; 0x37c <__vector_11>
+  18:	22 c0       	rjmp	.+68     	; 0x5e <__bad_interrupt>
+  1a:	21 c0       	rjmp	.+66     	; 0x5e <__bad_interrupt>
+  1c:	20 c0       	rjmp	.+64     	; 0x5e <__bad_interrupt>
+  1e:	1f c0       	rjmp	.+62     	; 0x5e <__bad_interrupt>
+  20:	1e c0       	rjmp	.+60     	; 0x5e <__bad_interrupt>
+  22:	1d c0       	rjmp	.+58     	; 0x5e <__bad_interrupt>
+  24:	1c c0       	rjmp	.+56     	; 0x5e <__bad_interrupt>
+
+00000026 <__ctors_start>:
+  26:	62 00       	.word	0x0062	; ????
+  28:	e3 01       	movw	r28, r6
+
+0000002a <__ctors_end>:
+  2a:	11 24       	eor	r1, r1
+  2c:	1f be       	out	0x3f, r1	; 63
+  2e:	cf e5       	ldi	r28, 0x5F	; 95
+  30:	d4 e0       	ldi	r29, 0x04	; 4
+  32:	de bf       	out	0x3e, r29	; 62
+  34:	cd bf       	out	0x3d, r28	; 61
+
+00000036 <__do_clear_bss>:
+  36:	20 e0       	ldi	r18, 0x00	; 0
+  38:	a0 e6       	ldi	r26, 0x60	; 96
+  3a:	b0 e0       	ldi	r27, 0x00	; 0
+  3c:	01 c0       	rjmp	.+2      	; 0x40 <.do_clear_bss_start>
+
+0000003e <.do_clear_bss_loop>:
+  3e:	1d 92       	st	X+, r1
+
+00000040 <.do_clear_bss_start>:
+  40:	aa 3a       	cpi	r26, 0xAA	; 170
+  42:	b2 07       	cpc	r27, r18
+  44:	e1 f7       	brne	.-8      	; 0x3e <.do_clear_bss_loop>
+
+00000046 <__do_global_ctors>:
+  46:	10 e0       	ldi	r17, 0x00	; 0
+  48:	c5 e1       	ldi	r28, 0x15	; 21
+  4a:	d0 e0       	ldi	r29, 0x00	; 0
+  4c:	03 c0       	rjmp	.+6      	; 0x54 <__do_global_ctors+0xe>
+  4e:	21 97       	sbiw	r28, 0x01	; 1
+  50:	fe 01       	movw	r30, r28
+  52:	bd d1       	rcall	.+890    	; 0x3ce <__tablejump2__>
+  54:	c3 31       	cpi	r28, 0x13	; 19
+  56:	d1 07       	cpc	r29, r17
+  58:	d1 f7       	brne	.-12     	; 0x4e <__do_global_ctors+0x8>
+  5a:	02 d0       	rcall	.+4      	; 0x60 <main>
+  5c:	e3 c1       	rjmp	.+966    	; 0x424 <_exit>
+
+0000005e <__bad_interrupt>:
+  5e:	d0 cf       	rjmp	.-96     	; 0x0 <__vectors>
+
+00000060 <main>:
+
+int main(void)
+{
+    while (1) 
+    {
+		if(hc06.received())
+  60:	81 e6       	ldi	r24, 0x61	; 97
+  62:	90 e0       	ldi	r25, 0x00	; 0
+  64:	42 d1       	rcall	.+644    	; 0x2ea <_ZN4HC068receivedEv>
+  66:	88 23       	and	r24, r24
+  68:	f9 f0       	breq	.+62     	; 0xa8 <main+0x48>
+		{
+			cli();
+  6a:	f8 94       	cli
+			hc06.Filter();
+  6c:	81 e6       	ldi	r24, 0x61	; 97
+  6e:	90 e0       	ldi	r25, 0x00	; 0
+  70:	b3 d0       	rcall	.+358    	; 0x1d8 <_ZN4HC066FilterEv>
+			rgb.write(hc06.getRed(), hc06.getGreen(), hc06.getBlue());
+  72:	81 e6       	ldi	r24, 0x61	; 97
+  74:	90 e0       	ldi	r25, 0x00	; 0
+  76:	30 d1       	rcall	.+608    	; 0x2d8 <_ZN4HC067getBlueEv>
+  78:	d8 2f       	mov	r29, r24
+  7a:	81 e6       	ldi	r24, 0x61	; 97
+  7c:	90 e0       	ldi	r25, 0x00	; 0
+  7e:	23 d1       	rcall	.+582    	; 0x2c6 <_ZN4HC068getGreenEv>
+  80:	c8 2f       	mov	r28, r24
+  82:	81 e6       	ldi	r24, 0x61	; 97
+  84:	90 e0       	ldi	r25, 0x00	; 0
+  86:	16 d1       	rcall	.+556    	; 0x2b4 <_ZN4HC066getRedEv>
+  88:	2d 2f       	mov	r18, r29
+  8a:	30 e0       	ldi	r19, 0x00	; 0
+  8c:	4c 2f       	mov	r20, r28
+  8e:	50 e0       	ldi	r21, 0x00	; 0
+  90:	68 2f       	mov	r22, r24
+  92:	70 e0       	ldi	r23, 0x00	; 0
+  94:	80 e6       	ldi	r24, 0x60	; 96
+  96:	90 e0       	ldi	r25, 0x00	; 0
+  98:	2d d0       	rcall	.+90     	; 0xf4 <_ZN3RGB5writeEiii>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  9a:	8f e0       	ldi	r24, 0x0F	; 15
+  9c:	97 e2       	ldi	r25, 0x27	; 39
+  9e:	01 97       	sbiw	r24, 0x01	; 1
+  a0:	f1 f7       	brne	.-4      	; 0x9e <main+0x3e>
+  a2:	00 c0       	rjmp	.+0      	; 0xa4 <main+0x44>
+  a4:	00 00       	nop
+			_delay_ms(5);
+			sei();
+  a6:	78 94       	sei
+		}
+		cli();
+  a8:	f8 94       	cli
+		while(!(UCSRA & (1 << UDRE)));
+  aa:	5d 9b       	sbis	0x0b, 5	; 11
+  ac:	fe cf       	rjmp	.-4      	; 0xaa <main+0x4a>
+		sei();
+  ae:	78 94       	sei
+  b0:	9f ef       	ldi	r25, 0xFF	; 255
+  b2:	24 e3       	ldi	r18, 0x34	; 52
+  b4:	8c e0       	ldi	r24, 0x0C	; 12
+  b6:	91 50       	subi	r25, 0x01	; 1
+  b8:	20 40       	sbci	r18, 0x00	; 0
+  ba:	80 40       	sbci	r24, 0x00	; 0
+  bc:	e1 f7       	brne	.-8      	; 0xb6 <main+0x56>
+  be:	00 c0       	rjmp	.+0      	; 0xc0 <main+0x60>
+  c0:	00 00       	nop
+  c2:	ce cf       	rjmp	.-100    	; 0x60 <main>
+
+000000c4 <_GLOBAL__sub_I_hc06>:
+#include <stdlib.h>
+#include "RGBHC06.h"
+#include "RGB.h"
+#include <stdbool.h>
+
+HC06 hc06;
+  c4:	81 e6       	ldi	r24, 0x61	; 97
+  c6:	90 e0       	ldi	r25, 0x00	; 0
+  c8:	84 d0       	rcall	.+264    	; 0x1d2 <_ZN4HC06C1Ev>
+RGB rgb;
+  ca:	80 e6       	ldi	r24, 0x60	; 96
+  cc:	90 e0       	ldi	r25, 0x00	; 0
+  ce:	01 d0       	rcall	.+2      	; 0xd2 <_ZN3RGBC1Ev>
+  d0:	08 95       	ret
+
+000000d2 <_ZN3RGBC1Ev>:
+#include <stdio.h>
+#include <util/delay.h>
+
+RGB::RGB()
+{
+	DDRB &= (0 << DDB1)|(0 << DDB2)|(0 << DDB3);
+  d2:	87 b3       	in	r24, 0x17	; 23
+  d4:	17 ba       	out	0x17, r1	; 23
+	TCCR1A |= (1 << COM1A1)|(1 << COM1B1)|(1 << WGM10);
+  d6:	8f b5       	in	r24, 0x2f	; 47
+  d8:	81 6a       	ori	r24, 0xA1	; 161
+  da:	8f bd       	out	0x2f, r24	; 47
+	TCCR1B |= (1 << CS11)|(1 << WGM12);
+  dc:	8e b5       	in	r24, 0x2e	; 46
+  de:	8a 60       	ori	r24, 0x0A	; 10
+  e0:	8e bd       	out	0x2e, r24	; 46
+	TCCR2 |= (1 << COM21)|(1 << WGM21)|(1 << WGM20)|(1 << CS21);
+  e2:	85 b5       	in	r24, 0x25	; 37
+  e4:	8a 66       	ori	r24, 0x6A	; 106
+  e6:	85 bd       	out	0x25, r24	; 37
+	OCR1A = 0; OCR1B = 0; OCR2 = 0;
+  e8:	1b bc       	out	0x2b, r1	; 43
+  ea:	1a bc       	out	0x2a, r1	; 42
+  ec:	19 bc       	out	0x29, r1	; 41
+  ee:	18 bc       	out	0x28, r1	; 40
+  f0:	13 bc       	out	0x23, r1	; 35
+  f2:	08 95       	ret
+
+000000f4 <_ZN3RGB5writeEiii>:
+}
+
+void RGB::write(int red, int green, int blue)
+{
+  f4:	cf 93       	push	r28
+  f6:	df 93       	push	r29
+	bool rflag = false;
+	bool gflag = false;
+	bool bflag = false;
+	uint8_t red1 = red;
+	uint8_t green1 = green;
+	uint8_t blue1 = blue;
+  f8:	f2 2f       	mov	r31, r18
+	if((red == 0) && (green == 0) && (blue == 0))
+  fa:	61 15       	cp	r22, r1
+  fc:	71 05       	cpc	r23, r1
+  fe:	71 f4       	brne	.+28     	; 0x11c <_ZN3RGB5writeEiii+0x28>
+ 100:	41 15       	cp	r20, r1
+ 102:	51 05       	cpc	r21, r1
+ 104:	59 f4       	brne	.+22     	; 0x11c <_ZN3RGB5writeEiii+0x28>
+ 106:	23 2b       	or	r18, r19
+ 108:	49 f4       	brne	.+18     	; 0x11c <_ZN3RGB5writeEiii+0x28>
+	{
+		DDRB &= (0 << DDB1)|(0 << DDB2)|(0 << DDB3);
+ 10a:	87 b3       	in	r24, 0x17	; 23
+ 10c:	17 ba       	out	0x17, r1	; 23
+	TCCR2 |= (1 << COM21)|(1 << WGM21)|(1 << WGM20)|(1 << CS21);
+	OCR1A = 0; OCR1B = 0; OCR2 = 0;
+}
+
+void RGB::write(int red, int green, int blue)
+{
+ 10e:	a0 e0       	ldi	r26, 0x00	; 0
+ 110:	e0 e0       	ldi	r30, 0x00	; 0
+ 112:	80 e0       	ldi	r24, 0x00	; 0
+		DDRB &= (0 << DDB1)|(0 << DDB2)|(0 << DDB3);
+	}
+	else DDRB |= (1 << DDB1)|(1 << DDB2)|(1 << DDB3);
+	while(!(rflag && gflag && bflag))
+	{
+		if(red1 == OCR1A) rflag = true;
+ 114:	77 27       	eor	r23, r23
+ 116:	b1 e0       	ldi	r27, 0x01	; 1
+		if(!rflag)
+		{
+			if(red1 > OCR1A) OCR1A += 1;
+			else OCR1A -= 1;
+		}
+		if(green1 == OCR1B) gflag = true;
+ 118:	55 27       	eor	r21, r21
+ 11a:	08 c0       	rjmp	.+16     	; 0x12c <_ZN3RGB5writeEiii+0x38>
+	uint8_t blue1 = blue;
+	if((red == 0) && (green == 0) && (blue == 0))
+	{
+		DDRB &= (0 << DDB1)|(0 << DDB2)|(0 << DDB3);
+	}
+	else DDRB |= (1 << DDB1)|(1 << DDB2)|(1 << DDB3);
+ 11c:	87 b3       	in	r24, 0x17	; 23
+ 11e:	8e 60       	ori	r24, 0x0E	; 14
+ 120:	87 bb       	out	0x17, r24	; 23
+ 122:	f5 cf       	rjmp	.-22     	; 0x10e <_ZN3RGB5writeEiii+0x1a>
+	while(!(rflag && gflag && bflag))
+ 124:	ee 23       	and	r30, r30
+ 126:	11 f0       	breq	.+4      	; 0x12c <_ZN3RGB5writeEiii+0x38>
+ 128:	a1 11       	cpse	r26, r1
+ 12a:	50 c0       	rjmp	.+160    	; 0x1cc <_ZN3RGB5writeEiii+0xd8>
+	{
+		if(red1 == OCR1A) rflag = true;
+ 12c:	2a b5       	in	r18, 0x2a	; 42
+ 12e:	3b b5       	in	r19, 0x2b	; 43
+ 130:	62 17       	cp	r22, r18
+ 132:	73 07       	cpc	r23, r19
+ 134:	a9 f0       	breq	.+42     	; 0x160 <_ZN3RGB5writeEiii+0x6c>
+		if(!rflag)
+ 136:	81 11       	cpse	r24, r1
+ 138:	14 c0       	rjmp	.+40     	; 0x162 <_ZN3RGB5writeEiii+0x6e>
+		{
+			if(red1 > OCR1A) OCR1A += 1;
+ 13a:	2a b5       	in	r18, 0x2a	; 42
+ 13c:	3b b5       	in	r19, 0x2b	; 43
+ 13e:	26 17       	cp	r18, r22
+ 140:	37 07       	cpc	r19, r23
+ 142:	38 f4       	brcc	.+14     	; 0x152 <_ZN3RGB5writeEiii+0x5e>
+ 144:	2a b5       	in	r18, 0x2a	; 42
+ 146:	3b b5       	in	r19, 0x2b	; 43
+ 148:	2f 5f       	subi	r18, 0xFF	; 255
+ 14a:	3f 4f       	sbci	r19, 0xFF	; 255
+ 14c:	3b bd       	out	0x2b, r19	; 43
+ 14e:	2a bd       	out	0x2a, r18	; 42
+ 150:	08 c0       	rjmp	.+16     	; 0x162 <_ZN3RGB5writeEiii+0x6e>
+			else OCR1A -= 1;
+ 152:	2a b5       	in	r18, 0x2a	; 42
+ 154:	3b b5       	in	r19, 0x2b	; 43
+ 156:	21 50       	subi	r18, 0x01	; 1
+ 158:	31 09       	sbc	r19, r1
+ 15a:	3b bd       	out	0x2b, r19	; 43
+ 15c:	2a bd       	out	0x2a, r18	; 42
+ 15e:	01 c0       	rjmp	.+2      	; 0x162 <_ZN3RGB5writeEiii+0x6e>
+		DDRB &= (0 << DDB1)|(0 << DDB2)|(0 << DDB3);
+	}
+	else DDRB |= (1 << DDB1)|(1 << DDB2)|(1 << DDB3);
+	while(!(rflag && gflag && bflag))
+	{
+		if(red1 == OCR1A) rflag = true;
+ 160:	8b 2f       	mov	r24, r27
+		if(!rflag)
+		{
+			if(red1 > OCR1A) OCR1A += 1;
+			else OCR1A -= 1;
+		}
+		if(green1 == OCR1B) gflag = true;
+ 162:	28 b5       	in	r18, 0x28	; 40
+ 164:	39 b5       	in	r19, 0x29	; 41
+ 166:	42 17       	cp	r20, r18
+ 168:	53 07       	cpc	r21, r19
+ 16a:	a9 f0       	breq	.+42     	; 0x196 <_ZN3RGB5writeEiii+0xa2>
+		if(!gflag)
+ 16c:	e1 11       	cpse	r30, r1
+ 16e:	14 c0       	rjmp	.+40     	; 0x198 <_ZN3RGB5writeEiii+0xa4>
+		{
+			if(green1 > OCR1B) OCR1B += 1;
+ 170:	28 b5       	in	r18, 0x28	; 40
+ 172:	39 b5       	in	r19, 0x29	; 41
+ 174:	24 17       	cp	r18, r20
+ 176:	35 07       	cpc	r19, r21
+ 178:	38 f4       	brcc	.+14     	; 0x188 <_ZN3RGB5writeEiii+0x94>
+ 17a:	28 b5       	in	r18, 0x28	; 40
+ 17c:	39 b5       	in	r19, 0x29	; 41
+ 17e:	2f 5f       	subi	r18, 0xFF	; 255
+ 180:	3f 4f       	sbci	r19, 0xFF	; 255
+ 182:	39 bd       	out	0x29, r19	; 41
+ 184:	28 bd       	out	0x28, r18	; 40
+ 186:	08 c0       	rjmp	.+16     	; 0x198 <_ZN3RGB5writeEiii+0xa4>
+			else OCR1B -= 1;
+ 188:	28 b5       	in	r18, 0x28	; 40
+ 18a:	39 b5       	in	r19, 0x29	; 41
+ 18c:	21 50       	subi	r18, 0x01	; 1
+ 18e:	31 09       	sbc	r19, r1
+ 190:	39 bd       	out	0x29, r19	; 41
+ 192:	28 bd       	out	0x28, r18	; 40
+ 194:	01 c0       	rjmp	.+2      	; 0x198 <_ZN3RGB5writeEiii+0xa4>
+		if(!rflag)
+		{
+			if(red1 > OCR1A) OCR1A += 1;
+			else OCR1A -= 1;
+		}
+		if(green1 == OCR1B) gflag = true;
+ 196:	eb 2f       	mov	r30, r27
+		if(!gflag)
+		{
+			if(green1 > OCR1B) OCR1B += 1;
+			else OCR1B -= 1;
+		}
+		if(blue1 == OCR2) bflag = true;
+ 198:	93 b5       	in	r25, 0x23	; 35
+ 19a:	f9 17       	cp	r31, r25
+ 19c:	69 f0       	breq	.+26     	; 0x1b8 <_ZN3RGB5writeEiii+0xc4>
+		if(!bflag)
+ 19e:	a1 11       	cpse	r26, r1
+ 1a0:	0c c0       	rjmp	.+24     	; 0x1ba <_ZN3RGB5writeEiii+0xc6>
+		{
+			if(blue1 > OCR2) OCR2 += 1;
+ 1a2:	93 b5       	in	r25, 0x23	; 35
+ 1a4:	9f 17       	cp	r25, r31
+ 1a6:	20 f4       	brcc	.+8      	; 0x1b0 <_ZN3RGB5writeEiii+0xbc>
+ 1a8:	93 b5       	in	r25, 0x23	; 35
+ 1aa:	9f 5f       	subi	r25, 0xFF	; 255
+ 1ac:	93 bd       	out	0x23, r25	; 35
+ 1ae:	05 c0       	rjmp	.+10     	; 0x1ba <_ZN3RGB5writeEiii+0xc6>
+			else  OCR2 -= 1;
+ 1b0:	93 b5       	in	r25, 0x23	; 35
+ 1b2:	91 50       	subi	r25, 0x01	; 1
+ 1b4:	93 bd       	out	0x23, r25	; 35
+ 1b6:	01 c0       	rjmp	.+2      	; 0x1ba <_ZN3RGB5writeEiii+0xc6>
+		if(!gflag)
+		{
+			if(green1 > OCR1B) OCR1B += 1;
+			else OCR1B -= 1;
+		}
+		if(blue1 == OCR2) bflag = true;
+ 1b8:	ab 2f       	mov	r26, r27
+ 1ba:	cf ec       	ldi	r28, 0xCF	; 207
+ 1bc:	d7 e0       	ldi	r29, 0x07	; 7
+ 1be:	21 97       	sbiw	r28, 0x01	; 1
+ 1c0:	f1 f7       	brne	.-4      	; 0x1be <_ZN3RGB5writeEiii+0xca>
+ 1c2:	00 c0       	rjmp	.+0      	; 0x1c4 <_ZN3RGB5writeEiii+0xd0>
+ 1c4:	00 00       	nop
+	if((red == 0) && (green == 0) && (blue == 0))
+	{
+		DDRB &= (0 << DDB1)|(0 << DDB2)|(0 << DDB3);
+	}
+	else DDRB |= (1 << DDB1)|(1 << DDB2)|(1 << DDB3);
+	while(!(rflag && gflag && bflag))
+ 1c6:	81 11       	cpse	r24, r1
+ 1c8:	ad cf       	rjmp	.-166    	; 0x124 <_ZN3RGB5writeEiii+0x30>
+ 1ca:	b0 cf       	rjmp	.-160    	; 0x12c <_ZN3RGB5writeEiii+0x38>
+			if(blue1 > OCR2) OCR2 += 1;
+			else  OCR2 -= 1;
+		}
+		_delay_ms(1);
+	}
+ 1cc:	df 91       	pop	r29
+ 1ce:	cf 91       	pop	r28
+ 1d0:	08 95       	ret
+
+000001d2 <_ZN4HC06C1Ev>:
+}
+
+void HC06::CleanString()
+{
+	USARTControl::instance.clearflag = true;
+	USARTControl::instance.ClrStr();
+ 1d2:	fc 01       	movw	r30, r24
+ 1d4:	10 82       	st	Z, r1
+ 1d6:	08 95       	ret
+
+000001d8 <_ZN4HC066FilterEv>:
+}
+
+void HC06::Filter()
+{
+ 1d8:	cf 93       	push	r28
+ 1da:	df 93       	push	r29
+	uint8_t r = 0;
+	uint8_t g = 0;
+	uint8_t b = 0;
+	offFlag = false;
+ 1dc:	fc 01       	movw	r30, r24
+ 1de:	10 82       	st	Z, r1
+	char* string = USARTControl::instance.str;
+	if(string[0] == 'O')
+ 1e0:	20 91 81 00 	lds	r18, 0x0081	; 0x800081 <_ZN12USARTControl8instanceE+0x11>
+ 1e4:	2f 34       	cpi	r18, 0x4F	; 79
+ 1e6:	49 f4       	brne	.+18     	; 0x1fa <_ZN4HC066FilterEv+0x22>
+	{
+		offFlag = true;
+ 1e8:	21 e0       	ldi	r18, 0x01	; 1
+ 1ea:	20 83       	st	Z, r18
+		goto endFilter;
+ 1ec:	5a c0       	rjmp	.+180    	; 0x2a2 <_ZN4HC066FilterEv+0xca>
+	{
+		rstring[i] = 0;
+		gstring[i] = 0;
+		bstring[i] = 0;
+	}
+	while(string[r] != '.')
+ 1ee:	30 91 81 00 	lds	r19, 0x0081	; 0x800081 <_ZN12USARTControl8instanceE+0x11>
+ 1f2:	3e 32       	cpi	r19, 0x2E	; 46
+ 1f4:	71 f0       	breq	.+28     	; 0x212 <_ZN4HC066FilterEv+0x3a>
+ 1f6:	20 e0       	ldi	r18, 0x00	; 0
+ 1f8:	18 c0       	rjmp	.+48     	; 0x22a <_ZN4HC066FilterEv+0x52>
+ 1fa:	fc 01       	movw	r30, r24
+ 1fc:	33 96       	adiw	r30, 0x03	; 3
+ 1fe:	9c 01       	movw	r18, r24
+ 200:	29 5f       	subi	r18, 0xF9	; 249
+ 202:	3f 4f       	sbci	r19, 0xFF	; 255
+		offFlag = true;
+		goto endFilter;
+	}
+	for(uint8_t i = 0; i < 4; i++)
+	{
+		rstring[i] = 0;
+ 204:	11 92       	st	Z+, r1
+		gstring[i] = 0;
+ 206:	13 82       	std	Z+3, r1	; 0x03
+		bstring[i] = 0;
+ 208:	17 82       	std	Z+7, r1	; 0x07
+	if(string[0] == 'O')
+	{
+		offFlag = true;
+		goto endFilter;
+	}
+	for(uint8_t i = 0; i < 4; i++)
+ 20a:	2e 17       	cp	r18, r30
+ 20c:	3f 07       	cpc	r19, r31
+ 20e:	d1 f7       	brne	.-12     	; 0x204 <_ZN4HC066FilterEv+0x2c>
+ 210:	ee cf       	rjmp	.-36     	; 0x1ee <_ZN4HC066FilterEv+0x16>
+	{
+		rstring[i] = 0;
+		gstring[i] = 0;
+		bstring[i] = 0;
+	}
+	while(string[r] != '.')
+ 212:	20 e0       	ldi	r18, 0x00	; 0
+	{
+		rstring[r] = string[r];
+		++r;
+	}
+	while(string[g+r+1] != '.')
+ 214:	30 e0       	ldi	r19, 0x00	; 0
+ 216:	f9 01       	movw	r30, r18
+ 218:	ee 57       	subi	r30, 0x7E	; 126
+ 21a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 21c:	60 81       	ld	r22, Z
+ 21e:	6e 32       	cpi	r22, 0x2E	; 46
+ 220:	89 f0       	breq	.+34     	; 0x244 <_ZN4HC066FilterEv+0x6c>
+ 222:	40 e0       	ldi	r20, 0x00	; 0
+ 224:	50 e0       	ldi	r21, 0x00	; 0
+ 226:	70 e0       	ldi	r23, 0x00	; 0
+ 228:	1b c0       	rjmp	.+54     	; 0x260 <_ZN4HC066FilterEv+0x88>
+		gstring[i] = 0;
+		bstring[i] = 0;
+	}
+	while(string[r] != '.')
+	{
+		rstring[r] = string[r];
+ 22a:	fc 01       	movw	r30, r24
+ 22c:	e2 0f       	add	r30, r18
+ 22e:	f1 1d       	adc	r31, r1
+ 230:	33 83       	std	Z+3, r19	; 0x03
+		++r;
+ 232:	2f 5f       	subi	r18, 0xFF	; 255
+	{
+		rstring[i] = 0;
+		gstring[i] = 0;
+		bstring[i] = 0;
+	}
+	while(string[r] != '.')
+ 234:	e2 2f       	mov	r30, r18
+ 236:	f0 e0       	ldi	r31, 0x00	; 0
+ 238:	ef 57       	subi	r30, 0x7F	; 127
+ 23a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 23c:	30 81       	ld	r19, Z
+ 23e:	3e 32       	cpi	r19, 0x2E	; 46
+ 240:	a1 f7       	brne	.-24     	; 0x22a <_ZN4HC066FilterEv+0x52>
+ 242:	e8 cf       	rjmp	.-48     	; 0x214 <_ZN4HC066FilterEv+0x3c>
+	{
+		rstring[r] = string[r];
+		++r;
+	}
+	while(string[g+r+1] != '.')
+ 244:	40 e0       	ldi	r20, 0x00	; 0
+ 246:	50 e0       	ldi	r21, 0x00	; 0
+	{
+		gstring[g] = string[g+r+1];
+		++g;
+	}
+	while(string[b+g+r+2] != ')')
+ 248:	fa 01       	movw	r30, r20
+ 24a:	e2 0f       	add	r30, r18
+ 24c:	f3 1f       	adc	r31, r19
+ 24e:	ed 57       	subi	r30, 0x7D	; 125
+ 250:	ff 4f       	sbci	r31, 0xFF	; 255
+ 252:	e0 81       	ld	r30, Z
+ 254:	e9 32       	cpi	r30, 0x29	; 41
+ 256:	29 f1       	breq	.+74     	; 0x2a2 <_ZN4HC066FilterEv+0xca>
+ 258:	60 e0       	ldi	r22, 0x00	; 0
+ 25a:	70 e0       	ldi	r23, 0x00	; 0
+ 25c:	a0 e0       	ldi	r26, 0x00	; 0
+ 25e:	10 c0       	rjmp	.+32     	; 0x280 <_ZN4HC066FilterEv+0xa8>
+		rstring[r] = string[r];
+		++r;
+	}
+	while(string[g+r+1] != '.')
+	{
+		gstring[g] = string[g+r+1];
+ 260:	fc 01       	movw	r30, r24
+ 262:	e4 0f       	add	r30, r20
+ 264:	f5 1f       	adc	r31, r21
+ 266:	67 83       	std	Z+7, r22	; 0x07
+		++g;
+ 268:	7f 5f       	subi	r23, 0xFF	; 255
+	while(string[r] != '.')
+	{
+		rstring[r] = string[r];
+		++r;
+	}
+	while(string[g+r+1] != '.')
+ 26a:	47 2f       	mov	r20, r23
+ 26c:	50 e0       	ldi	r21, 0x00	; 0
+ 26e:	fa 01       	movw	r30, r20
+ 270:	e2 0f       	add	r30, r18
+ 272:	f3 1f       	adc	r31, r19
+ 274:	ee 57       	subi	r30, 0x7E	; 126
+ 276:	ff 4f       	sbci	r31, 0xFF	; 255
+ 278:	60 81       	ld	r22, Z
+ 27a:	6e 32       	cpi	r22, 0x2E	; 46
+ 27c:	89 f7       	brne	.-30     	; 0x260 <_ZN4HC066FilterEv+0x88>
+ 27e:	e4 cf       	rjmp	.-56     	; 0x248 <_ZN4HC066FilterEv+0x70>
+		gstring[g] = string[g+r+1];
+		++g;
+	}
+	while(string[b+g+r+2] != ')')
+	{
+		bstring[b] = string[b+g+r+2];
+ 280:	ec 01       	movw	r28, r24
+ 282:	c6 0f       	add	r28, r22
+ 284:	d7 1f       	adc	r29, r23
+ 286:	eb 87       	std	Y+11, r30	; 0x0b
+		++b;
+ 288:	af 5f       	subi	r26, 0xFF	; 255
+	while(string[g+r+1] != '.')
+	{
+		gstring[g] = string[g+r+1];
+		++g;
+	}
+	while(string[b+g+r+2] != ')')
+ 28a:	6a 2f       	mov	r22, r26
+ 28c:	70 e0       	ldi	r23, 0x00	; 0
+ 28e:	fa 01       	movw	r30, r20
+ 290:	e6 0f       	add	r30, r22
+ 292:	f7 1f       	adc	r31, r23
+ 294:	e2 0f       	add	r30, r18
+ 296:	f3 1f       	adc	r31, r19
+ 298:	ed 57       	subi	r30, 0x7D	; 125
+ 29a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 29c:	e0 81       	ld	r30, Z
+ 29e:	e9 32       	cpi	r30, 0x29	; 41
+ 2a0:	79 f7       	brne	.-34     	; 0x280 <_ZN4HC066FilterEv+0xa8>
+	{
+		bstring[b] = string[b+g+r+2];
+		++b;
+	}
+endFilter:
+	USARTControl::instance.clearflag = true;
+ 2a2:	e0 e7       	ldi	r30, 0x70	; 112
+ 2a4:	f0 e0       	ldi	r31, 0x00	; 0
+ 2a6:	81 e0       	ldi	r24, 0x01	; 1
+ 2a8:	80 83       	st	Z, r24
+	USARTControl::instance.rxflag = false;
+ 2aa:	15 82       	std	Z+5, r1	; 0x05
+	USARTControl::instance.rxflag1 = false;
+ 2ac:	16 82       	std	Z+6, r1	; 0x06
+}
+ 2ae:	df 91       	pop	r29
+ 2b0:	cf 91       	pop	r28
+ 2b2:	08 95       	ret
+
+000002b4 <_ZN4HC066getRedEv>:
+
+uint8_t HC06::getRed()
+{
+	uint8_t red;
+	if(offFlag) red = 0;
+ 2b4:	fc 01       	movw	r30, r24
+ 2b6:	20 81       	ld	r18, Z
+ 2b8:	21 11       	cpse	r18, r1
+ 2ba:	03 c0       	rjmp	.+6      	; 0x2c2 <_ZN4HC066getRedEv+0xe>
+	else red = atoi(rstring);
+ 2bc:	03 96       	adiw	r24, 0x03	; 3
+ 2be:	8d d0       	rcall	.+282    	; 0x3da <atoi>
+ 2c0:	08 95       	ret
+}
+
+uint8_t HC06::getRed()
+{
+	uint8_t red;
+	if(offFlag) red = 0;
+ 2c2:	80 e0       	ldi	r24, 0x00	; 0
+	else red = atoi(rstring);
+	return red;
+}
+ 2c4:	08 95       	ret
+
+000002c6 <_ZN4HC068getGreenEv>:
+
+uint8_t HC06::getGreen()
+{
+	uint8_t green;
+	if(offFlag) green = 0;
+ 2c6:	fc 01       	movw	r30, r24
+ 2c8:	20 81       	ld	r18, Z
+ 2ca:	21 11       	cpse	r18, r1
+ 2cc:	03 c0       	rjmp	.+6      	; 0x2d4 <_ZN4HC068getGreenEv+0xe>
+	else green = atoi(gstring);
+ 2ce:	07 96       	adiw	r24, 0x07	; 7
+ 2d0:	84 d0       	rcall	.+264    	; 0x3da <atoi>
+ 2d2:	08 95       	ret
+}
+
+uint8_t HC06::getGreen()
+{
+	uint8_t green;
+	if(offFlag) green = 0;
+ 2d4:	80 e0       	ldi	r24, 0x00	; 0
+	else green = atoi(gstring);
+	return green;
+}
+ 2d6:	08 95       	ret
+
+000002d8 <_ZN4HC067getBlueEv>:
+
+uint8_t HC06::getBlue()
+{
+	uint8_t blue;
+	if(offFlag) blue = 0;
+ 2d8:	fc 01       	movw	r30, r24
+ 2da:	20 81       	ld	r18, Z
+ 2dc:	21 11       	cpse	r18, r1
+ 2de:	03 c0       	rjmp	.+6      	; 0x2e6 <_ZN4HC067getBlueEv+0xe>
+	else blue = atoi(bstring);
+ 2e0:	0b 96       	adiw	r24, 0x0b	; 11
+ 2e2:	7b d0       	rcall	.+246    	; 0x3da <atoi>
+ 2e4:	08 95       	ret
+}
+
+uint8_t HC06::getBlue()
+{
+	uint8_t blue;
+	if(offFlag) blue = 0;
+ 2e6:	80 e0       	ldi	r24, 0x00	; 0
+	else blue = atoi(bstring);
+	return blue;
+}
+ 2e8:	08 95       	ret
+
+000002ea <_ZN4HC068receivedEv>:
+
+bool HC06::received()
+{
+	return USARTControl::instance.rxflag1;
+ 2ea:	80 91 76 00 	lds	r24, 0x0076	; 0x800076 <_ZN12USARTControl8instanceE+0x6>
+ 2ee:	08 95       	ret
+
+000002f0 <_ZN12USARTControl6ClrStrEv>:
+		++i;
+	}
+}
+
+void USARTControl::ClrStr()
+{
+ 2f0:	dc 01       	movw	r26, r24
+	if(!rxflag)
+ 2f2:	15 96       	adiw	r26, 0x05	; 5
+ 2f4:	8c 91       	ld	r24, X
+ 2f6:	15 97       	sbiw	r26, 0x05	; 5
+ 2f8:	81 11       	cpse	r24, r1
+ 2fa:	0f c0       	rjmp	.+30     	; 0x31a <_ZN12USARTControl6ClrStrEv+0x2a>
+	{
+		if(clearflag)
+ 2fc:	8c 91       	ld	r24, X
+ 2fe:	88 23       	and	r24, r24
+ 300:	61 f0       	breq	.+24     	; 0x31a <_ZN12USARTControl6ClrStrEv+0x2a>
+ 302:	fd 01       	movw	r30, r26
+ 304:	71 96       	adiw	r30, 0x11	; 17
+ 306:	9d 01       	movw	r18, r26
+ 308:	2f 5c       	subi	r18, 0xCF	; 207
+ 30a:	3f 4f       	sbci	r19, 0xFF	; 255
+		{
+			for(count = 0; count < 32; ++count)
+			{
+				str[count] = 0;
+ 30c:	11 92       	st	Z+, r1
+{
+	if(!rxflag)
+	{
+		if(clearflag)
+		{
+			for(count = 0; count < 32; ++count)
+ 30e:	e2 17       	cp	r30, r18
+ 310:	f3 07       	cpc	r31, r19
+ 312:	e1 f7       	brne	.-8      	; 0x30c <_ZN12USARTControl6ClrStrEv+0x1c>
+			{
+				str[count] = 0;
+			}
+			clearflag = false;
+ 314:	1c 92       	st	X, r1
+			count = 0;
+ 316:	12 96       	adiw	r26, 0x02	; 2
+ 318:	1c 92       	st	X, r1
+ 31a:	08 95       	ret
+
+0000031c <_ZN12USARTControlC1Ev>:
+#define BAUD 9600L
+#define UBRRL_value ((F_CPU/(BAUD*16))-1)
+
+USARTControl USARTControl::instance;
+
+USARTControl::USARTControl()
+ 31c:	cf 93       	push	r28
+ 31e:	df 93       	push	r29
+ 320:	ec 01       	movw	r28, r24
+{
+	sei();
+ 322:	78 94       	sei
+	UCSRB |= (1 << RXCIE)|(1 << TXEN)|(1 << RXEN);
+ 324:	8a b1       	in	r24, 0x0a	; 10
+ 326:	88 69       	ori	r24, 0x98	; 152
+ 328:	8a b9       	out	0x0a, r24	; 10
+	UCSRC |= (1 << URSEL) | (1 << UCSZ0) | (1 << UCSZ1);
+ 32a:	80 b5       	in	r24, 0x20	; 32
+ 32c:	86 68       	ori	r24, 0x86	; 134
+ 32e:	80 bd       	out	0x20, r24	; 32
+	UBRRH = 0;
+ 330:	10 bc       	out	0x20, r1	; 32
+	UBRRL = UBRRL_value;
+ 332:	83 e3       	ldi	r24, 0x33	; 51
+ 334:	89 b9       	out	0x09, r24	; 9
+
+	clearflag = true;
+ 336:	81 e0       	ldi	r24, 0x01	; 1
+ 338:	88 83       	st	Y, r24
+	rxflag = false;
+ 33a:	1d 82       	std	Y+5, r1	; 0x05
+	rxflag1 = false;
+ 33c:	1e 82       	std	Y+6, r1	; 0x06
+	buffer = 0;
+ 33e:	19 82       	std	Y+1, r1	; 0x01
+	ClrStr();
+ 340:	ce 01       	movw	r24, r28
+ 342:	d6 df       	rcall	.-84     	; 0x2f0 <_ZN12USARTControl6ClrStrEv>
+	count = 0;
+ 344:	1a 82       	std	Y+2, r1	; 0x02
+}
+ 346:	df 91       	pop	r29
+ 348:	cf 91       	pop	r28
+ 34a:	08 95       	ret
+
+0000034c <_ZN12USARTControl12DataReceivedEv>:
+		}
+	}
+}
+
+void USARTControl::DataReceived()
+{
+ 34c:	cf 93       	push	r28
+ 34e:	df 93       	push	r29
+ 350:	ec 01       	movw	r28, r24
+	cli();
+ 352:	f8 94       	cli
+	ClrStr();
+ 354:	cd df       	rcall	.-102    	; 0x2f0 <_ZN12USARTControl6ClrStrEv>
+	while(!(UCSRA & (1 <<RXC)));
+ 356:	5f 9b       	sbis	0x0b, 7	; 11
+ 358:	fe cf       	rjmp	.-4      	; 0x356 <_ZN12USARTControl12DataReceivedEv+0xa>
+	buffer = UDR;
+ 35a:	8c b1       	in	r24, 0x0c	; 12
+ 35c:	89 83       	std	Y+1, r24	; 0x01
+	str[count] = buffer;
+ 35e:	8a 81       	ldd	r24, Y+2	; 0x02
+ 360:	99 81       	ldd	r25, Y+1	; 0x01
+ 362:	fe 01       	movw	r30, r28
+ 364:	e8 0f       	add	r30, r24
+ 366:	f1 1d       	adc	r31, r1
+ 368:	91 8b       	std	Z+17, r25	; 0x11
+	++count;
+ 36a:	8f 5f       	subi	r24, 0xFF	; 255
+ 36c:	8a 83       	std	Y+2, r24	; 0x02
+ 	buffer = 0;
+ 36e:	19 82       	std	Y+1, r1	; 0x01
+	rxflag1 = true;
+ 370:	81 e0       	ldi	r24, 0x01	; 1
+ 372:	8e 83       	std	Y+6, r24	; 0x06
+ 	rxflag = true;
+ 374:	8d 83       	std	Y+5, r24	; 0x05
+}
+ 376:	df 91       	pop	r29
+ 378:	cf 91       	pop	r28
+ 37a:	08 95       	ret
+
+0000037c <__vector_11>:
+
+ISR(USART_RXC_vect)
+{
+ 37c:	1f 92       	push	r1
+ 37e:	0f 92       	push	r0
+ 380:	0f b6       	in	r0, 0x3f	; 63
+ 382:	0f 92       	push	r0
+ 384:	11 24       	eor	r1, r1
+ 386:	2f 93       	push	r18
+ 388:	3f 93       	push	r19
+ 38a:	4f 93       	push	r20
+ 38c:	5f 93       	push	r21
+ 38e:	6f 93       	push	r22
+ 390:	7f 93       	push	r23
+ 392:	8f 93       	push	r24
+ 394:	9f 93       	push	r25
+ 396:	af 93       	push	r26
+ 398:	bf 93       	push	r27
+ 39a:	ef 93       	push	r30
+ 39c:	ff 93       	push	r31
+	USARTControl::instance.DataReceived();
+ 39e:	80 e7       	ldi	r24, 0x70	; 112
+ 3a0:	90 e0       	ldi	r25, 0x00	; 0
+ 3a2:	d4 df       	rcall	.-88     	; 0x34c <_ZN12USARTControl12DataReceivedEv>
+ 3a4:	ff 91       	pop	r31
+ 3a6:	ef 91       	pop	r30
+ 3a8:	bf 91       	pop	r27
+ 3aa:	af 91       	pop	r26
+ 3ac:	9f 91       	pop	r25
+ 3ae:	8f 91       	pop	r24
+ 3b0:	7f 91       	pop	r23
+ 3b2:	6f 91       	pop	r22
+ 3b4:	5f 91       	pop	r21
+ 3b6:	4f 91       	pop	r20
+ 3b8:	3f 91       	pop	r19
+ 3ba:	2f 91       	pop	r18
+ 3bc:	0f 90       	pop	r0
+ 3be:	0f be       	out	0x3f, r0	; 63
+ 3c0:	0f 90       	pop	r0
+ 3c2:	1f 90       	pop	r1
+ 3c4:	18 95       	reti
+
+000003c6 <_GLOBAL__sub_I__ZN12USARTControl8instanceE>:
+
+#define F_CPU 8000000UL
+#define BAUD 9600L
+#define UBRRL_value ((F_CPU/(BAUD*16))-1)
+
+USARTControl USARTControl::instance;
+ 3c6:	80 e7       	ldi	r24, 0x70	; 112
+ 3c8:	90 e0       	ldi	r25, 0x00	; 0
+ 3ca:	a8 df       	rcall	.-176    	; 0x31c <_ZN12USARTControlC1Ev>
+ 3cc:	08 95       	ret
+
+000003ce <__tablejump2__>:
+ 3ce:	ee 0f       	add	r30, r30
+ 3d0:	ff 1f       	adc	r31, r31
+ 3d2:	05 90       	lpm	r0, Z+
+ 3d4:	f4 91       	lpm	r31, Z
+ 3d6:	e0 2d       	mov	r30, r0
+ 3d8:	09 94       	ijmp
+
+000003da <atoi>:
+ 3da:	fc 01       	movw	r30, r24
+ 3dc:	88 27       	eor	r24, r24
+ 3de:	99 27       	eor	r25, r25
+ 3e0:	e8 94       	clt
+ 3e2:	21 91       	ld	r18, Z+
+ 3e4:	20 32       	cpi	r18, 0x20	; 32
+ 3e6:	e9 f3       	breq	.-6      	; 0x3e2 <atoi+0x8>
+ 3e8:	29 30       	cpi	r18, 0x09	; 9
+ 3ea:	10 f0       	brcs	.+4      	; 0x3f0 <atoi+0x16>
+ 3ec:	2e 30       	cpi	r18, 0x0E	; 14
+ 3ee:	c8 f3       	brcs	.-14     	; 0x3e2 <atoi+0x8>
+ 3f0:	2b 32       	cpi	r18, 0x2B	; 43
+ 3f2:	39 f0       	breq	.+14     	; 0x402 <__LOCK_REGION_LENGTH__+0x2>
+ 3f4:	2d 32       	cpi	r18, 0x2D	; 45
+ 3f6:	31 f4       	brne	.+12     	; 0x404 <__LOCK_REGION_LENGTH__+0x4>
+ 3f8:	68 94       	set
+ 3fa:	03 c0       	rjmp	.+6      	; 0x402 <__LOCK_REGION_LENGTH__+0x2>
+ 3fc:	0b d0       	rcall	.+22     	; 0x414 <__mulhi_const_10>
+ 3fe:	82 0f       	add	r24, r18
+ 400:	91 1d       	adc	r25, r1
+ 402:	21 91       	ld	r18, Z+
+ 404:	20 53       	subi	r18, 0x30	; 48
+ 406:	2a 30       	cpi	r18, 0x0A	; 10
+ 408:	c8 f3       	brcs	.-14     	; 0x3fc <atoi+0x22>
+ 40a:	1e f4       	brtc	.+6      	; 0x412 <__LOCK_REGION_LENGTH__+0x12>
+ 40c:	90 95       	com	r25
+ 40e:	81 95       	neg	r24
+ 410:	9f 4f       	sbci	r25, 0xFF	; 255
+ 412:	08 95       	ret
+
+00000414 <__mulhi_const_10>:
+ 414:	7a e0       	ldi	r23, 0x0A	; 10
+ 416:	97 9f       	mul	r25, r23
+ 418:	90 2d       	mov	r25, r0
+ 41a:	87 9f       	mul	r24, r23
+ 41c:	80 2d       	mov	r24, r0
+ 41e:	91 0d       	add	r25, r1
+ 420:	11 24       	eor	r1, r1
+ 422:	08 95       	ret
+
+00000424 <_exit>:
+ 424:	f8 94       	cli
+
+00000426 <__stop_program>:
+ 426:	ff cf       	rjmp	.-2      	; 0x426 <__stop_program>
